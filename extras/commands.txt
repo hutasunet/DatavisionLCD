@@ -1,0 +1,44 @@
+DataVision:	' LCD stuff for Data Vision Dual 2x16 display Firmware 16215-1 S2RB Philco P345A
+	;COMMAND = 0	' CLEAR ALL 4 LINES
+	;COMMAND = 1	' GOTO Top Display
+	;COMMAND = 2	' CLEAR Top Display
+	;COMMAND = 3	' GOTO Lower Display
+	;COMMAND = 4	' CLEAR Lower Display
+	;COMMAND = 5	' Split-Line Filler Characters (16 spaces)
+	;COMMAND = 6	' Lower Display OFF
+	;COMMAND = 7	' Lower Display ON
+	;COMMAND = 8	' Home without Clearing Top
+	;COMMAND = 9	' Home without Clearing Lower
+
+	Select Case COMMAND
+		Case 0
+			GoSub ClearTop
+			GoSub ClearBottom
+		Case 1
+			serout MONITOR,BAUD,($12)
+		Case 2
+			GoSub ClearTop
+		Case 3
+			serout MONITOR,BAUD,($16)
+		Case 4
+			GoSub ClearBottom
+		Case 5
+			serout MONITOR,BAUD,("                        ")
+		Case 6
+			serout MONITOR,BAUD,(%00010101,%00001010)
+		Case 7
+			serout MONITOR,BAUD,(%00010101,%00001100)
+		Case 8
+			serout MONITOR,BAUD,(%00010001,%10000000)
+		Case 9
+			serout MONITOR,BAUD,(%00010101,%10000000)
+	End Select
+	RETURN
+	
+ClearTop:
+	serout MONITOR,BAUD,(%00010001,%00000001)'Upper HOME+CLEAR L1                                    ")
+	RETURN
+
+ClearBottom:
+	serout MONITOR,BAUD,(%00010101,%00000001)'Lower HOME+CLEAR L1                                   ")
+	RETURN
