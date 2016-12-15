@@ -1,0 +1,8 @@
+LCD_DV16215	KEYWORD1
+clearDisplay	KEYWORD2
+clearAllDisplays	KEYWORD2
+clearTopDisplay	KEYWORD2
+clearBottomDisplay	KEYWORD2
+setDisplayTop	KEYWORD2
+setDisplayBottom	KEYWORD2
+write	KEYWORD2
