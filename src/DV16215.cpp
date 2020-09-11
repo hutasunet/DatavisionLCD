@@ -8,7 +8,7 @@
 
   GitHub: http://github.com/CsCrazy85/Arduino/tree/master/Datavision%20LCD
 
-  Version 1.0
+  Version 1.0.2
 
 */
 #include "DV16215.h"
